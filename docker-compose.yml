@@ -1,0 +1,40 @@
+version: '3.9'
+services:
+  vlxd-api:
+    container_name: vlxd-api-container
+    build: 
+      dockerfile: Dockerfile
+      context: ./vlxd-api
+    env_file:
+      - .env.api
+    ports:
+      - 5000:5000
+    volumes:
+      - ./vlxd-api:/app/vlxd-api
+    networks:
+      - vlxd
+  mongo-container:
+    image: mongo
+    container_name: mongo-container
+    ports:
+      - 27018:27017
+    volumes:
+      - ./vlxd-mongo-db:/data/db
+    networks:
+      - vlxd
+  vlxd-client:
+    container_name: vlxd-client-container
+    build: 
+      dockerfile: Dockerfile
+      context: ./vlxd-client
+    env_file:
+      - .env.client
+    ports:
+      - 3000:3000
+    volumes:
+      - ./vlxd-client:/app/vlxd-client 
+    networks:
+      - vlxd 
+networks:
+  vlxd:
+    name: vlxd-network    
