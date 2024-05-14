@@ -1,11 +1,10 @@
-FROM node:20
+FROM node:20.13.1
 
-WORKDIR /app/vlxd-api
+WORKDIR /app
 
-COPY package*.json .
-
+COPY package.json .
+COPY package-lock.json .
+RUN npm install
 COPY . .
-
-RUN npm i
 
 CMD npm start

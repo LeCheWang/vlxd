@@ -1,9 +1,9 @@
 #build stage
-FROM node:20
+FROM node:20.13.1
 
-WORKDIR /app/vlxd-client
+WORKDIR /app
 
-COPY package*.json .
+COPY ["package.json", "package-lock.json", "./"]
 
 COPY . .
 
