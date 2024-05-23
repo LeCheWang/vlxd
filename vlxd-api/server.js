@@ -9,8 +9,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true })); 
 
 // Cấu hình CORS để cho phép tất cả các nguồn
+// Cấu hình CORS
 app.use(cors({
-  origin: '*',
+  origin: function (origin, callback) {
+    callback(null, true); // Cho phép tất cả các nguồn truy cập
+  },
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true
 }));
