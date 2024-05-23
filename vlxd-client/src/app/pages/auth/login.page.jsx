@@ -25,8 +25,8 @@ const Login = () => {
         navigate("/");
       }
     } catch (error) {
-      const {data} = error.response;
-      alert(data.message);
+      const {data} = error?.response;
+      alert(data?.message);
     }
     setSubmitting(false);
   };

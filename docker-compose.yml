@@ -7,6 +7,8 @@ services:
       - .env.api
     ports:
       - 5000:5000
+    expose:
+      - 5000
     # volumes:
     #   - ./vlxd-api:/app
     networks:
@@ -22,16 +24,14 @@ services:
       - vlxd
   vlxd-client:
     container_name: vlxd-client-container
-    restart: on-failure
+    # restart: on-failure
     build: 
       dockerfile: Dockerfile
-      context: ./vlxd-client
-    env_file:
-      - .env.client
+      context: ./vlxd-client  
     ports:
-      - 3001:80 
+      - 3001:80
     networks:
-      - vlxd  
+      - vlxd
 networks:
   vlxd:
     name: vlxd-network    
