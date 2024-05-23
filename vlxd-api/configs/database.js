@@ -8,8 +8,7 @@ const connectDB = async () => {
 
     const adminAcc = await Account.findOne({
       username: configuration.ADMIN_ACC.username,
-    });
-
+    }); 
     if (!adminAcc) {
       await Account.create(configuration.ADMIN_ACC);
       console.log('admin created');

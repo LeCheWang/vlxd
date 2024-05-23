@@ -23,22 +23,15 @@ services:
   vlxd-client:
     container_name: vlxd-client-container
     restart: on-failure
-    build: ./vlxd-client
+    build: 
+      dockerfile: Dockerfile
+      context: ./vlxd-client
     env_file:
       - .env.client
     ports:
-      - 3000:80
-    # volumes:
-    #   - ./vlxd-client:/app
+      - 3001:80 
     networks:
-      - vlxd 
-  # nginx:
-  #   image: nginx:1.23.3
-  #   ports:
-  #     - 3000:80
-  #   volumes:
-  #     - ./vlxd-client/build:/usr/share/nginx/html
-  #     - ./vlxd-client/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - vlxd  
 networks:
   vlxd:
     name: vlxd-network    
