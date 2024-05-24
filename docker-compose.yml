@@ -1,16 +1,14 @@
 version: '3.9'
 services:
   vlxd-api:
-    container_name: vlxd-api-container
+    container_name: backend
     build: ./vlxd-api
     env_file:
       - .env.api
     ports:
       - 5000:5000
     expose:
-      - 5000
-    # volumes:
-    #   - ./vlxd-api:/app
+      - 5000 
     networks:
       - vlxd
   mongo-container:
@@ -23,8 +21,7 @@ services:
     networks:
       - vlxd
   vlxd-client:
-    container_name: vlxd-client-container
-    # restart: on-failure
+    container_name: frontend 
     build: 
       dockerfile: Dockerfile
       context: ./vlxd-client  
